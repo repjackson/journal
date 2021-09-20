@@ -28,9 +28,12 @@ Template.home.helpers
     one_doc: ->
         count = Docs.find({}).count()
         count is 1
-        
+    docs: ->
+        Docs.find 
+            model:'post'
+            app:'dao'
     is_editing: ->
-        Session.get('editing_id', @_id)
+        Session.equals('editing_id', @_id)
         
     card_class: ->
         count = Docs.find({}).count()
@@ -68,7 +71,10 @@ Template.home.events
             Docs.insert 
                 model:'post'
                 app:'dao'
+                _timestamp:Date.now()
+                
         Session.set('editing_id', new_id)
+                
     # 'click .page_up': (e,t)->
     #     delta = Docs.findOne model:'delta'
     #     Docs.update delta._id,

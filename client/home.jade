@@ -49,18 +49,22 @@ template(name='home')
     //         .ui.center.aligned.basic.segment
     //             i.massive.loading.yin.yang.grey.icon
     //     else
-    .sixteen.wide.center.aligned.column
-        .ui.icon.circular.button.add_post
-            i.plus.icon
-        each docs 
-            .ui.header !{body}
-            if is_editing
-                +textarea_edit key='body' label='body' direct=true
-                i.pencil.circular.link.icon.save_doc
-            else 
-                .ui.segment !{body}
-                i.pencil.circular.link.icon.edit_doc
-                
+    .ui.padded.grid
+        .sixteen.wide.center.aligned.column
+            .ui.icon.circular.button.add_post
+                i.plus.icon
+            .ui.stackable.two.cards
+                each docs 
+                    .ui.card
+                        if is_editing
+                            +textarea_edit key='body' label='body' direct=true
+                            i.checkmark.circular.link.icon.save_doc
+                        else 
+                            .ui.segment 
+                                |!{body}
+                                |!{description}
+                                i.pencil.circular.link.icon.edit_doc
+                        +print_this
         // each picked_tags
         //     a.ui.big.active.label.unpick_tag.pointer.zoomer #{this}
         // .ui.icon.input   

@@ -96,10 +96,14 @@ Docs.allow
             
             
 Meteor.publish 'dao_docs', ()->
-    Docs.find 
+    Docs.find {
         model:'post'
         app:'dao'
-
+    }, {
+        sort:
+            _timestamp:-1
+        limit:20
+    }
 
 # Meteor.publish 'post_docs', (
 #     picked_tags=[]
