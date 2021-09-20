@@ -95,6 +95,12 @@ Docs.allow
 #             limit:1
             
             
+Meteor.publish 'dao_docs', ()->
+    Docs.find 
+        model:'post'
+        app:'dao'
+
+
 # Meteor.publish 'post_docs', (
 #     picked_tags=[]
 #     title_filter

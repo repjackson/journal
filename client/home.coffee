@@ -15,6 +15,10 @@ Template.home.onCreated ->
         Session.get('query')
         picked_tags.array()
         , ->
+    @autorun -> Meteor.subscribe 'dao_docs', 
+        Session.get('query')
+        picked_tags.array()
+        , ->
     @autorun -> Meteor.subscribe 'tags', 
         Session.get('query')
         picked_tags.array()
@@ -24,6 +28,9 @@ Template.home.helpers
     one_doc: ->
         count = Docs.find({}).count()
         count is 1
+        
+    is_editing: ->
+        Session.get('editing_id', @_id)
         
     card_class: ->
         count = Docs.find({}).count()
@@ -50,6 +57,18 @@ Template.home.events
         # console.log @
         Session.set('query', null)
     
+    'click .save_doc ': ->
+        Session.set('editing_id', null)
+    'click .edit_doc ': ->
+        Session.set('editing_id', @_id)
+    
+    
+    'click .add_doc ': ->
+        new_id = 
+            Docs.insert 
+                model:'post'
+                app:'dao'
+        Session.set('editing_id', new_id)
     # 'click .page_up': (e,t)->
     #     delta = Docs.findOne model:'delta'
     #     Docs.update delta._id,
