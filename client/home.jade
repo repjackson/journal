@@ -58,13 +58,13 @@ template(name='home')
                     .ui.card
                         if is_editing
                             +html_edit key='body' label='body' direct=true
-                            i.checkmark.circular.link.icon.save_doc
+                            i.checkmark.circular.link.big.icon.save_doc
+                            +print_this
                         else 
                             .ui.segment 
                                 |!{body}
                                 |!{description}
                                 i.pencil.circular.link.icon.edit_doc
-                        +print_this
         // each picked_tags
         //     a.ui.big.active.label.unpick_tag.pointer.zoomer #{this}
         // .ui.icon.input   
