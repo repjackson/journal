@@ -11,6 +11,7 @@ Template.registerHelper 'is_loading', () ->
     Session.get('loading')
 
 Template.home.onCreated ->
+    @autorun -> Meteor.subscribe 'doc_by_id', Session.get('editing_id') 
     @autorun -> Meteor.subscribe 'query', 
         Session.get('query')
         picked_tags.array()
@@ -29,9 +30,17 @@ Template.home.helpers
         count = Docs.find({}).count()
         count is 1
     docs: ->
-        Docs.find 
-            model:'post'
-            app:'dao'
+        if Session.get('editing_id')
+            Docs.find 
+                _id:Session.get('editing_id')
+        else 
+            Docs.find({
+                model:'post'
+                app:'dao'
+            }, {
+                sort:
+                    _timestamp:-1
+                })
     is_editing: ->
         Session.equals('editing_id', @_id)
         
@@ -66,13 +75,13 @@ Template.home.events
         Session.set('editing_id', @_id)
     
     
-    'click .add_doc ': ->
+    'click .add_post ': ->
         new_id = 
             Docs.insert 
                 model:'post'
                 app:'dao'
                 _timestamp:Date.now()
-                
+        console.log 'editing', new_id   
         Session.set('editing_id', new_id)
                 
     # 'click .page_up': (e,t)->

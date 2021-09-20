@@ -57,7 +57,7 @@ template(name='home')
                 each docs 
                     .ui.card
                         if is_editing
-                            +textarea_edit key='body' label='body' direct=true
+                            +html_edit key='body' label='body' direct=true
                             i.checkmark.circular.link.icon.save_doc
                         else 
                             .ui.segment 
