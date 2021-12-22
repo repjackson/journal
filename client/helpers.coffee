@@ -8,6 +8,12 @@ Template.registerHelper 'parent_doc', () ->
 Template.registerHelper 'rental', () ->
     Docs.findOne @rental_id
     # Template.parentData()
+Template.registerHelper 'is_active_route', (route) ->
+    window.location.href
+    window.location.href.indexOf(route) != -1
+
+
+
 Template.registerHelper 'group_modules', () ->
     console.log @module_slugs
     Docs.find 
