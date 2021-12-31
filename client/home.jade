@@ -32,9 +32,25 @@ head
         
         gtag('config', 'G-GLYPPRGJFQ');
 
-body
+// body
+//     +nav
+//     +home
+    
+    
+template(name='layout')
+    // img.ui.fluid.image.(src="{{c.url 'cafe'}}")
     +nav
-    +home
+    .ui.bottom.attached.pushable.segment.scrollin
+        +topbar
+        // +left_sidebar
+        // +right_sidebar
+        // +cartbar
+        // +walletbar
+        #ain_area.global_conainer.pusher
+            +yield
+    // +footer
+    
+    
     
 template(name='home')
     // img.ui.fluid.image.checkin_banner(src="{{c.url 'frontrange' width=1000 height=1000 crop='crop'}}")
@@ -103,3 +119,26 @@ template(name='print_this')
     i.circular.large.code.link.icon.print_this
 template(name='remove_button')
     i.circular.large.remove.link.icon.print_this
+    
+    
+    
+template(name='mlayout')
+    .global_container(class=invert_class)
+        unless is_frontdesk
+            +nav
+        //- img.ui.fluid.image.checkin_banner(src="{{c.url 'frontrange' width=1000 height=1000 crop='crop'}}")    
+        +yield
+
+
+template(name='not_found')
+    .ui.center.aligned.padded.basic.segment
+        +ibig name='park-bench' 
+            |browser_back
+        .ui.center.aligned.header page not found
+        a.ui.big.basic.button(href="/") 
+            +i name='home' 
+            // |home
+        .ui.basic.big.button.browser_back
+            i.large.undo.icon
+            |go back
+    

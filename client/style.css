@@ -8,8 +8,8 @@ body {
      /*background: rgba(0,0,0,.05) !important; */
     /*scroll-behavior: smooth;*/
     /*margin-top: 5em;*/
-    background: rgba(42,42,42,1) !important;
-    filter: invert(1) !important; 
+    /*background: rgba(42,42,42,1) !important;*/
+    /*filter: invert(1) !important; */
     /* overscroll-behavior: none; */
     transition: all 1s ease !important;
     /*background: darkgrey !important; */
@@ -21,6 +21,9 @@ body {
 }
 .filled {
     background-color: black !important;
+}
+.card {
+    transition: all .5s !important; /* Animation */
 }
 .card:hover {
     filter: drop-shadow(10px 10px 10px rgba(200,200,200, 0.5)) !important;
@@ -363,7 +366,7 @@ img, .button{
 
 .image:not(.flat), img {
     border-radius:10px !important; 
-    filter: invert(.9) !important;
+    /*filter: invert(.9) !important;*/
 }
 
 /*}*/
